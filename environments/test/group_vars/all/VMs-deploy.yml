@@ -1,0 +1,7 @@
+resource_group: SSOAlpha-Ansible-Test
+vmss_name: vmss-k8s-workers
+location: westeu
+vmss_net_name: k8s-net
+vmss_subnet_name: k8s-cluster
+admin_username: "{{ lookup('env','VMSS_ADMIN_USERNAME') }}"
+admin_password: "{{ lookup('env','VMSS_ADMIN_PASSWORD') }}"
