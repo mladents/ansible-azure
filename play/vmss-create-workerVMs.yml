@@ -27,13 +27,13 @@
       azure_rm_virtualnetwork:
         resource_group: "{{ resource_group }}"
         name: "{{ vmss_net_name }}"
-        address_prefixes: "10.0.0.0/16"
+        address_prefixes: "10.10.0.0/16"
         #        state: present
     - name: Add subnet
       azure_rm_subnet:
         resource_group: "{{ resource_group }}"
         name: "{{ vmss_subnet_name }}"
-        address_prefix: "10.0.1.0/24"
+        address_prefix: "10.10.1.0/24"
         virtual_network: "{{ vmss_net_name }}"
         #        state: present
     - name: Create public IP address
@@ -83,7 +83,11 @@
         vm_size: Standard_DS2_v2
         admin_username: "{{ admin_username }}"
         admin_password: "{{ admin_password }}"
-        ssh_password_enabled: true
+        #ssh_password_enabled: true
+        ssh_password_enabled: false
+        ssh_public_keys:
+          - path: /home/adminMB1/.ssh/authorized_keys
+            key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDf0TaEvM/NAE/zZAOfT4bRL31XxsA1Tph4pYxERErWHYRZtVbPWaJMYMW2hF5rdO+tsknQdA95ChdjgmaGNN6oXFxBHU77GZQaIjC6tTIy2DN7D+o7nnwONeS7lFNtKfK7VUNpdca3q6tbRI6MFk/mQRHAkCKK03FpWgkZ2BBodHzFj/gkFk2zekMMN30Mq/HJYhqz7zdNor05z5wJYYJ2VMP+hPPxbs8KveOOWJwkZkTnzEC/Py7o7MsXtE+HUPZVInu8BZPXDniZC1QqRvLduo0JrwT4tRnEKKD8xcRGfKu6WDrg2icP14zsj1vXzlp+eZbX2ltFjG4BKY5QfYvb obradml@jumpBox" 
         capacity: 3
         virtual_network_name: "{{ vmss_net_name }}"
         subnet_name: "{{ vmss_subnet_name }}"

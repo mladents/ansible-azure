@@ -1,0 +1,16 @@
+- name: Ansible Azure VMs IPs
+  hosts: localhost
+  connection: local
+  # vars:
+  #   resource_group: vmsstestrg
+  #   vmss_name: vmsstest
+  #   location: eastus
+  #   admin_username: "{{ lookup('env','VMSS_ADMIN_USERNAME') }}"
+  #   admin_password: "{{ lookup('env','VMSS_ADMIN_PASSWORD') }}"
+
+  tasks:
+    - name: Show private ip
+      debug:
+        msg: "{{network_interface.ip_configuration.private_ip_address}}"
+    # tags: 
+    #- recipe2
